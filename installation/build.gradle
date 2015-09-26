@@ -1,0 +1,5 @@
+defaultTasks 'myFirstTask'
+
+task myFirstTask { 
+	println "Gradle was installed"
+}
