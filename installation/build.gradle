@@ -1,5 +1,6 @@
 defaultTasks 'myFirstTask'
 
-task myFirstTask { 
-	println "Gradle was installed"
+task myFirstTask {
+    def version = GradleVersion.current().getVersion()
+    println "Gradle $versiono was installed"
 }
