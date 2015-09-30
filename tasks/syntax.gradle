@@ -1,0 +1,23 @@
+// define task
+task myTask {
+    doLast {
+        println "Task completed"
+    }
+}
+
+
+task myTask2 {
+}
+
+// add block to existing task
+myTask2.doLast {
+    println "Task2 completed"
+}
+
+// shorthand
+task myTask3 << {
+    println "'<<' is a shortcut for '.doLast' "
+}
+
+
+

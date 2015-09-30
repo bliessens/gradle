@@ -1,0 +1,10 @@
+task count << {
+    4.times { print "$it " }
+}
+
+task hashCode {
+
+    println "Benoit".concat("Liessens").toUpperCase().substring(0, 10).hashCode()
+}
+
+
