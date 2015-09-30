@@ -1,5 +1,5 @@
 # Created by .ignore support plugin (hsz.mobi)
 out/
 **/build/
-#**/.gradle/
+**/.gradle/
 *.iml
