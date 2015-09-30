@@ -4,5 +4,4 @@
     }
 }
 
-dynamicTask3.dependsOn dynamicTask2
 

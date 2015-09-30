@@ -1,10 +1,17 @@
-task count << {
-    4.times { print "$it " }
+task strings {
+
+    println "Benoit".concat(" Liessens").toUpperCase()
 }
 
-task hashCode {
 
-    println "Benoit".concat("Liessens").toUpperCase().substring(0, 10).hashCode()
+task md5 << {
+    def byteArray = java.security.MessageDigest.getInstance('MD5').digest("BenoitLiessens".getBytes())
+    byteArray.each { c ->
+        print Integer.toHexString(0xFF & c)
+    }
 }
 
+task jvm << {
+    println "Using JVM " + System.getProperty("java.version")
+}
 
