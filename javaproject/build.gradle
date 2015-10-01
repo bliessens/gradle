@@ -1,0 +1,13 @@
+apply plugin: 'java'
+
+configurations.each { conf -> println "configuration named '$conf.name'" }
+
+
+dependencies {
+
+}
+
+task some {
+    println "A dummy task"
+}
+
