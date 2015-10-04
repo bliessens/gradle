@@ -1,16 +1,5 @@
 apply plugin: 'java'
 
-configurations.each { conf ->
-    println "configuration '$conf.name'"
-}
-
-dependencies {
-
-    compile "org.apache.commons:commons-lang3:3.3.2"
-
-    testCompile "junit:junit:4.12"
-}
-
 repositories {
     mavenLocal()
     maven {
@@ -23,4 +12,15 @@ repositories {
             password "LeeFei3p"
         }
     }
+}
+
+dependencies {
+
+    compile "org.apache.commons:commons-lang3:3.3.2"
+
+    testCompile "junit:junit:4.12"
+}
+
+configurations.each { conf ->
+    println "configuration '$conf.name'"
 }
