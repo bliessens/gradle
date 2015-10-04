@@ -1,16 +1,5 @@
 apply plugin: 'java'
 
-configurations.each { conf ->
-    println "configuration '$conf.name'"
-}
-
-dependencies {
-
-    compile "org.apache.commons:commons-lang3:3.3.2"
-
-    testCompile "junit:junit:4.12"
-}
-
 repositories {
     mavenLocal()
     maven {
@@ -21,6 +10,48 @@ repositories {
         credentials {
             username "healthcare"
             password "LeeFei3p"
+        }
+    }
+}
+
+//configurations.each { conf ->
+//    println "configuration '$conf.name'"
+//}
+
+dependencies {
+
+    compile "org.apache.commons:commons-lang3:3.3.2"
+
+    testCompile "junit:junit:4.12"
+}
+
+sourceSets.each { set ->
+
+    println "$set.name java   " + set.java.srcDirs.collect { file ->
+        file.path.substring(rootDir.absolutePath.length() + 1)
+    }
+
+    println "$set.name resources " + set.resources.srcDirs.collect { file ->
+        file.path.substring(rootDir.absolutePath.length() + 1)
+    }
+
+    println "$set.name compile path " + set.compileClasspath.collect { file ->
+        if (file.path.startsWith(rootDir.absolutePath)) {
+            file.path.substring(rootDir.absolutePath.length() + 1)
+        } else if (file.path.contains(".m2/repository")) {
+            "\$MAVEN_LOCAL:" + file.name
+        } else if (file.path.contains(".gradle/cache")) {
+            "\$GRADLE_CACHE:" + file.name
+        }
+    }
+
+    println "$set.name runtime path " + set.runtimeClasspath.collect { file ->
+        if (file.path.startsWith(rootDir.absolutePath)) {
+            file.path.substring(rootDir.absolutePath.length() + 1)
+        } else if (file.path.contains(".m2/repository")) {
+            "\$MAVEN_LOCAL" + file.name
+        } else if (file.path.contains(".gradle/cache")) {
+            "\$GRADLE_CACHE:" + file.name
         }
     }
 }
