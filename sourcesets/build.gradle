@@ -37,6 +37,7 @@ dependencies {
 jar {
     // include API classes in jar of this project ('default' configuation)
     from sourceSets.api.output
+    exclude ('.donotdelete')
 }
 
 task apiJar(type: Jar, dependsOn: apiClasses) {
@@ -45,6 +46,7 @@ task apiJar(type: Jar, dependsOn: apiClasses) {
     // - api resources to be processed
     description 'API library'
     from sourceSets.api.output
+    exclude ('.donotdelete')
     appendix = 'api'
 }
 
