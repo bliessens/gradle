@@ -1,51 +1,92 @@
 apply plugin: 'java'
 
+group = 'be.cegeka.gradle.tutorial'
+version = '0.0.1'
+
 repositories {
-    mavenLocal()
     mavenCentral()
-    maven {
-        url "http://nexus.cegeka.be/nexus/content/groups/public"
-    }
-    maven {
-        url "http://nexus.cegeka.be/nexus/content/repositories/healthcare-releases"
-        credentials {
-            username "healthcare"
-            password "LeeFei3p"
+}
+
+configurations {
+    // separate configuration for API
+    apiConf
+}
+
+sourceSets {
+    // define API sourceSet
+    api {
+        java {
+            srcDirs 'src/api/java'
+        }
+        resources {
+            srcDirs 'src/api/resources'
         }
     }
 }
 
-//configurations.each { conf ->
-//    println "configuration '$conf.name'"
-//}
+dependencies {
 
-sourceSets.each { set ->
+    compile "org.apache.commons:commons-lang3:3.3.2"
+
+    // API is needed to compile 'main' sourceSet
+    compile sourceSets.api.output
+
+    testCompile "junit:junit:4.12"
+}
+
+jar {
+    // include API classes in jar of this project ('default' configuation)
+    from sourceSets.api.output
+}
+
+task apiJar(type: Jar, dependsOn: apiClasses) {
+    // custom task to build jar with API classes, requires
+    // - api to be compiled
+    // - api resources to be processed
+    description 'API library'
+    from sourceSets.api.output
+    appendix = 'api'
+}
 
     println "$set.name java   " + set.java.srcDirs.collect { file ->
         file.path.substring(rootDir.absolutePath.length() + 1)
     }
 
-    println "$set.name resources " + set.resources.srcDirs.collect { file ->
-        file.path.substring(rootDir.absolutePath.length() + 1)
-    }
-
-    println "$set.name compile path " + set.compileClasspath.collect { file ->
-        if (file.path.startsWith(rootDir.absolutePath)) {
-            file.path.substring(rootDir.absolutePath.length() + 1)
-        } else if (file.path.contains(".m2/repository")) {
-            "\$MAVEN_LOCAL:" + file.name
-        } else if (file.path.contains(".gradle/cache")) {
-            "\$GRADLE_CACHE:" + file.name
-        }
-    }
-
-    println "$set.name runtime path " + set.runtimeClasspath.collect { file ->
-        if (file.path.startsWith(rootDir.absolutePath)) {
-            file.path.substring(rootDir.absolutePath.length() + 1)
-        } else if (file.path.contains(".m2/repository")) {
-            "\$MAVEN_LOCAL" + file.name
-        } else if (file.path.contains(".gradle/cache")) {
-            "\$GRADLE_CACHE:" + file.name
-        }
-    }
+artifacts {
+    // for configuration 'apiConf', the artifact is created by task 'apiJar'
+    apiConf apiJar
 }
+
+//
+jar.dependsOn apiJar
+
+//sourceSets.each { set ->
+//
+//    println "$set.name java   " + set.java.srcDirs.collect { file ->
+//        file.path.substring(rootDir.absolutePath.length() + 1)
+//    }
+//
+//    println "$set.name resources " + set.resources.srcDirs.collect { file ->
+//        file.path.substring(rootDir.absolutePath.length() + 1)
+//    }
+//
+//    println "$set.name compile path " + set.compileClasspath.collect { file ->
+//        if (file.path.startsWith(rootDir.absolutePath)) {
+//            file.path.substring(rootDir.absolutePath.length() + 1)
+//        } else if (file.path.contains(".m2/repository")) {
+//            "\$MAVEN_LOCAL:" + file.name
+//        } else if (file.path.contains(".gradle/cache")) {
+//            "\$GRADLE_CACHE:" + file.name
+//        }
+//    }
+//
+//    println "$set.name runtime path " + set.runtimeClasspath.collect { file ->
+//        if (file.path.startsWith(rootDir.absolutePath)) {
+//            file.path.substring(rootDir.absolutePath.length() + 1)
+//        } else if (file.path.contains(".m2/repository")) {
+//            "\$MAVEN_LOCAL:" + file.name
+//        } else if (file.path.contains(".gradle/cache")) {
+//            "\$GRADLE_CACHE:" + file.name
+//        }
+//    }
+//}
