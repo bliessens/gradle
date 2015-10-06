@@ -2,6 +2,7 @@ apply plugin: 'java'
 
 repositories {
     mavenLocal()
+    mavenCentral()
     maven {
         url "http://nexus.cegeka.be/nexus/content/groups/public"
     }
@@ -19,6 +20,7 @@ dependencies {
     compile "org.apache.commons:commons-lang3:3.3.2"
 
     testCompile "junit:junit:4.12"
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '2.2.0'
 }
 
 configurations.each { conf ->
