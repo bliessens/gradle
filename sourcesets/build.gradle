@@ -92,3 +92,12 @@ jar.dependsOn apiJar
 //        }
 //    }
 //}
+
+uploadArchives {
+    repositories {
+        flatDir {
+            name "localRepository"
+            dirs "repo"
+        }
+    }
+}
