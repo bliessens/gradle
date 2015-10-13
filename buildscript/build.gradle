@@ -1,0 +1,24 @@
+defaultTasks 'hash'
+
+import org.apache.commons.codec.digest.DigestUtils
+
+import java.security.MessageDigest
+
+buildscript {
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "commons-codec:commons-codec:1.9"
+    }
+}
+
+def name = "benoitliessens"
+
+task hash() {
+    MessageDigest digest = MessageDigest.getInstance("md5")
+    DigestUtils.updateDigest(digest, name)
+    println "MD5($name)=" + digest.digest().collect { String.format("%02x", it) }.join("")
+}
