@@ -1,8 +1,8 @@
 // TODO:
-// 1. make separate API jar contaning
+// 3. make separate API jar containing
 //    - classes from package be/cegeka/gradle/api
 //    - readme.txt
-// 2. configuration testCompile requires test classes from project 'domain'
+// 4. configuration testCompile requires test classes from project 'domain'
 
 dependencies {
 

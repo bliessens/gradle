@@ -1,5 +1,9 @@
 // TODO
-// 1. add gradle config such that IntelliJ compiles classes to different directory
+// 8. add gradle config such that IntelliJ compiles classes to different directory
+// 9. from the $rootDir run 'gradle clean'
+//    then go to dir webapp and run 'gradle build'.
+//    Which project is built / tested ?
+//    Is that any different than Maven ?
 
 allprojects {
 

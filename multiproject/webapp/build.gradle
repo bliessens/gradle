@@ -1,6 +1,7 @@
 // TODO:
-// 1. include service-api.jar in webapp.war!/api
-// 2. include content of webapp-resources.war in webapp.war
+// 5. include service-api.jar in webapp.war!/api
+// 6. include content of webapp-resources.war in webapp.war
+// 7. can you reuse the task you created in 1. for this project ?
 
 apply plugin: 'war'
 

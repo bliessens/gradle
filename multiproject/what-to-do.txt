@@ -1,0 +1,23 @@
+What should you do ?
+
+Start in project other:webapp-resources
+ 1. create task to extract WAR
+ 2. exclude ALL things from WAR which you don't need
+
+Then project service
+ 3. make separate API jar containing
+    - classes from package be/cegeka/gradle/api
+    - readme.txt
+ 4. configuration testCompile requires test classes from project 'domain'
+
+Then project webapp
+ 5. include service-api.jar in webapp.war!/api
+ 6. include content of webapp-resources.war in webapp.war
+ 7. can you reuse the task you created in 1. for this project ?
+
+Then the root project
+ 8. add gradle config such that IntelliJ compiles classes to different directory
+ 9. from the $rootDir run 'gradle clean'
+    then go to dir webapp and run 'gradle build'.
+    Which project is built / tested ?
+    Is that any different than Maven ?
