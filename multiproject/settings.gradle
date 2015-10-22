@@ -1,0 +1,3 @@
+rootProject.name = 'multi-project'
+
+include 'service', 'webapp', 'other:domain', 'other:utils', 'other:webapp-resources'
