@@ -1,0 +1,15 @@
+// TODO:
+// 1. make separate API jar contaning
+//    - classes from package be/cegeka/gradle/api
+//    - readme.txt
+// 2. configuration testCompile requires test classes from project 'domain'
+
+dependencies {
+
+    compile "org.apache.commons:commons-lang3:3.3.2"
+    compile project(':other:domain')
+    compile project(':other:utils')
+
+    compile "org.springframework:spring-beans:$springVersion"
+
+}

@@ -1,0 +1,28 @@
+// TODO
+// 1. add gradle config such that IntelliJ compiles classes to different directory
+
+allprojects {
+
+    apply plugin: 'java'
+
+    group = 'be.cegeka.gradle.tutorial'
+    version = '0.0.1'
+
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+
+    ext {
+        springVersion = '4.1.6.RELEASE'
+    }
+
+    dependencies {
+        compile "com.google.guava:guava:16.0.1"
+
+        testCompile "junit:junit:4.12"
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+}

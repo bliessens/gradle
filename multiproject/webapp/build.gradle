@@ -1,0 +1,10 @@
+// TODO:
+// 1. include service-api.jar in webapp.war!/api
+// 2. include content of webapp-resources.war in webapp.war
+
+apply plugin: 'war'
+
+dependencies {
+    compile project(':service')
+    compile project(':other:utils')
+}
