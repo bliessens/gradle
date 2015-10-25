@@ -20,4 +20,7 @@ Then the root project
  9. from the $rootDir run 'gradle clean'
     then go to dir webapp and run 'gradle build'.
     Which project is built / tested ?
-    Is that any different than Maven ?
+    Is that any different from Maven's behaviour ?
+ 10. Use the 'buildscript' script block to add a dependency
+    to the 'classpath' configuration of your Gradle build.
+    What is the purpose of this script block / configuration ?
